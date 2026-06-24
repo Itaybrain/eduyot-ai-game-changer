@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>עדויות בוגרים — AI GAME CHANGER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:  #0066FF;
+  --cyan:  #00C8FF;
+  --dark:  #07090F;
+  --card:  #0E1120;
+  --card2: #111525;
+  --line:  rgba(255,255,255,.08);
+  --gold:  #FFD60A;
+  --white: #FFFFFF;
+  --muted: rgba(255,255,255,.5);
+  --dim:   rgba(255,255,255,.7);
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  border-bottom: 1px solid var(--line);
+}
+
+.badge {
+  display: inline-block;
+  border: 1px solid rgba(0,200,255,.3);
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  padding: 5px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── STATS ── */
+.stats {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.stat {
+  flex: 1;
+  max-width: 180px;
+  text-align: center;
+  padding: 28px 16px;
+  border-left: 1px solid var(--line);
+}
+.stat:last-child { border-left: none; }
+
+.stat-num {
+  display: block;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--cyan);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: .78rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── GRID ── */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .2s, transform .2s;
+}
+
+.card:hover {
+  border-color: rgba(0,200,255,.18);
+  transform: translateY(-3px);
+}
+
+/* Featured — full width */
+.card.featured {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  background: linear-gradient(135deg, rgba(0,102,255,.1) 0%, rgba(0,200,255,.04) 100%);
+  border-color: rgba(0,200,255,.18);
+}
+
+@media (max-width: 640px) {
+  .card.featured { flex-direction: column; }
+  .card.featured .card-top { border-left: none; border-bottom: 1px solid var(--line); }
+}
+
+/* ── CARD TOP (quote area) ── */
+.card-top {
+  padding: 26px 24px 20px;
+  flex: 1;
+}
+
+.card.featured .card-top {
+  flex: 1.5;
+  padding: 32px 32px 28px;
+}
+
+/* ── CARD BOTTOM (למה זה עבד) ── */
+.card-bottom {
+  background: var(--card2);
+  border-top: 1px solid var(--line);
+  padding: 16px 24px 20px;
+}
+
+.card.featured .card-bottom {
+  flex: 1;
+  border-top: none;
+  border-right: 1px solid var(--line);  /* rtl: separates right column */
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.why-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+
+.why-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.why-list li {
+  font-size: .85rem;
+  color: var(--dim);
+  line-height: 1.5;
+  padding-right: 14px;
+  position: relative;
+}
+
+.why-list li::before {
+  content: "✓";
+  position: absolute;
+  right: 0;
+  color: var(--cyan);
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+/* ── PERSON ── */
+.person {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 14px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.av-1 { background: linear-gradient(135deg,#0066FF,#00C8FF); }
+.av-2 { background: linear-gradient(135deg,#7C3AED,#A855F7); }
+.av-3 { background: linear-gradient(135deg,#059669,#10B981); }
+.av-4 { background: linear-gradient(135deg,#DC2626,#F87171); }
+.av-5 { background: linear-gradient(135deg,#D97706,#FFD60A); }
+.av-6 { background: linear-gradient(135deg,#0891B2,#22D3EE); }
+.av-7 { background: linear-gradient(135deg,#BE185D,#F472B6); }
+.av-8 { background: linear-gradient(135deg,#1D4ED8,#60A5FA); }
+
+.name  { font-size: .95rem; font-weight: 700; line-height: 1.2; }
+.role  { font-size: .74rem; color: var(--cyan); font-weight: 500; margin-top: 2px; }
+
+.stars {
+  color: var(--gold);
+  font-size: .8rem;
+  letter-spacing: .04em;
+  margin-bottom: 12px;
+}
+
+/* ── QUOTE ── */
+.quote {
+  font-size: .96rem;
+  line-height: 1.75;
+  color: var(--dim);
+}
+
+.card.featured .quote { font-size: 1.05rem; }
+
+/* ── TAG ── */
+.tag {
+  display: inline-block;
+  background: rgba(255,214,10,.08);
+  border: 1px solid rgba(255,214,10,.2);
+  color: var(--gold);
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 3px 11px;
+  border-radius: 100px;
+  margin-top: 12px;
+}
+
+/* ── CTA ── */
+.cta {
+  text-align: center;
+  padding: 56px 24px 72px;
+  border-top: 1px solid var(--line);
+}
+
+.cta h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.cta p {
+  color: var(--muted);
+  margin-bottom: 32px;
+  font-size: .95rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  color: #fff;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 15px 36px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(0,102,255,.3);
+  transition: opacity .2s, transform .2s;
+}
+.cta-btn:hover { opacity: .88; transform: translateY(-2px); }
+
+.footer {
+  text-align: center;
+  padding: 16px;
+  font-size: .75rem;
+  color: rgba(255,255,255,.22);
+  border-top: 1px solid var(--line);
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="badge">AI GAME CHANGER · Brain · עדן ביבס</div>
+  <h1>מה אומרים<br><em>הבוגרים שלנו</em></h1>
+  <p>בוגרים אמיתיים. תוצאות אמיתיות. אנשים שהגיעו עם חלום ויצאו עם עסק שעובד.</p>
+</section>
+
+<!-- Stats bar -->
+<div class="stats">
+  <div class="stat"><span class="stat-num">250+</span><span class="stat-label">בוגרים</span></div>
+  <div class="stat"><span class="stat-num">12</span><span class="stat-label">שבועות</span></div>
+  <div class="stat"><span class="stat-num">78K ₪</span><span class="stat-label">הכנסה חודשית מקסימלית</span></div>
+  <div class="stat"><span class="stat-num">100%</span><span class="stat-label">מעשי</span></div>
+</div>
+
+<!-- Grid -->
+<section class="section">
+  <div class="section-title">סיפורי הצלחה</div>
+  <div class="grid">
+
+    <!-- ── FEATURED — ליבה שם טוב ── -->
+    <div class="card featured">
+      <div class="card-bottom">
+        <div class="why-label">למה זה עבד</div>
+        <ul class="why-list">
+          <li>הבינה מהר את הפוטנציאל העסקי של AI</li>
+          <li>בנתה סוכן מותאם לתחום המשכנתאות שלה</li>
+          <li>התמקדה בפתרון כאב אמיתי של הלקוח</li>
+        </ul>
+      </div>
+      <div class="card-top">
+        <div class="person">
+          <div class="avatar av-1">ל</div>
+          <div>
+            <div class="name">ליבה שם טוב</div>
+            <div class="role">סטארטאפ משכנתאות · ארה"ב</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">פיתחתי ללקוחה סוכן מכירות מותאם אישית שעזר לסגור עסקאות בשווי 78,000 ₪ — בחודש וחצי בלבד.</p>
+        <span class="tag">💰 78,000 ₪ בחודש וחצי</span>
+      </div>
+    </div>
+
+    <!-- ── ספיר ── -->
+    <div class="card">
+      <div class="card-top">
+        <div class="person">
+          <div class="avatar av-5">ס</div>
+          <div><div class="name">ספיר</div><div class="role">בוגרת התכנית</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">בזכות התכנית ועבודת הגמר קיבלתי תפקיד בחברת סייבר כמפתחת פתרונות AI.</p>
+        <span class="tag">🚀 מפתחת פתרונות AI בחברת סייבר</span>
+      </div>
+      <div class="card-bottom">
+        <div class="why-label">למה זה עבד</div>
+        <ul class="why-list">
+          <li>הגישה פרויקט גמר שהדהים מעסיקים</li>
+          <li>שילבה ידע AI עם ניסיון מקצועי קיים</li>
+          <li>הציגה פתרון אמיתי לבעיה עסקית</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── יניב ── -->
+    <div class="card">
+      <div class="card-top">
+        <div class="person">
+          <div class="avatar av-6">י</div>
+          <div><div class="name">יניב</div><div class="role">בוגר התכנית</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">לא רק לימוד טכני — אלא בניית צורת חשיבה חדשה: איך ללמוד נכון, לבנות מערכות, ולהפוך רעיונות למציאות.</p>
+      </div>
+      <div class="card-bottom">
+        <div class="why-label">למה זה עבד</div>
+        <ul class="why-list">
+          <li>גישה ממוקדת בהבנה, לא בשינון</li>
+          <li>בנה שיטת עבודה שניתן לשחזר</li>
+          <li>יצר מנטליות של בנייה מאפס</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── עופר ── -->
+    <div class="card">
+      <div class="card-top">
+        <div class="person">
+          <div class="avatar av-7">ע</div>
+          <div><div class="name">עופר</div><div class="role">סושיאל מדיה ושיווק ממומן</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">ביחד עם שותפה שהכרתי בתכנית, אנחנו נותנים שירות הטמעת AI לבעלי עסקים — וכבר יש לנו לקוח ראשון.</p>
+        <span class="tag">🤝 עסק חדש + לקוח ראשון</span>
+      </div>
+      <div class="card-bottom">
+        <div class="why-label">למה זה עבד</div>
+        <ul class="why-list">
+          <li>שילב AI עם ניסיון שיווקי קיים</li>
+          <li>מצא שותפה מתאימה בקהילה</li>
+          <li>זיהה צורך ממשי בשוק</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── קרין ארד ── -->
+    <div class="card">
+      <div class="card-top">
+        <div class="person">
+          <div class="avatar av-4">ק</div>
+          <div><div class="name">קרין ארד</div><div class="role">סופרת ועיתונאית</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">הגעתי עם אפס ידע טכני ובניתי לעצמי אתר שלם עם ספרים, בלוגים ו-6 אפליקציות.</p>
+        <span class="tag">💡 0 ידע → 6 אפליקציות</span>
+      </div>
+      <div class="card-bottom">
+        <div class="why-label">למה זה עבד</div>
+        <ul class="why-list">
+          <li>לא ויתרה על חוסר רקע טכני</li>
+          <li>התמקדה בכלים הרלוונטיים לתחום שלה</li>
+          <li>בנתה בצורה הדרגתית ועקבית</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── פנינה קריוף ── -->
+    <div class="card">
+      <div class="card-top">
+        <div class="person">
+          <div class="avatar av-3">פ</div>
+          <div><div class="name">פנינה קריוף</div><div class="role">התפתחות אישית</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">בניתי מערכת שלמה שעוזרת לבעלי קליניקות לנהל את העסק בצורה קלה וחכמה יותר.</p>
+      </div>
+      <div class="card-bottom">
+        <div class="why-label">למה זה עבד</div>
+        <ul class="why-list">
+          <li>הבינה לעומק את הצרכים של קהל היעד</li>
+          <li>בנתה מוצר שפותר כאב אמיתי</li>
+          <li>שילבה AI עם מומחיות קיימת</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── אורלי פיטל ── -->
+    <div class="card">
+      <div class="card-top">
+        <div class="person">
+          <div class="avatar av-2">א</div>
+          <div><div class="name">אורלי פיטל</div><div class="role">מעצבת · סדנאות קרמיקה</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">יצרתי מערכת פנימית מותאמת אישית לניהול הנרשמים לסדנאות — סיום לניהול ידני לנצח.</p>
+      </div>
+      <div class="card-bottom">
+        <div class="why-label">למה זה עבד</div>
+        <ul class="why-list">
+          <li>זיהתה בעיה ספציפית בעסק שלה</li>
+          <li>בנתה פתרון פשוט ויעיל</li>
+          <li>חסכה שעות עבודה בכל שבוע</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── דורי ── -->
+    <div class="card">
+      <div class="card-top">
+        <div class="person">
+          <div class="avatar av-8">ד</div>
+          <div><div class="name">דורי</div><div class="role">תחום המחשוב</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="quote">במהלך התכנית פיתחתי אפליקציות שונות וקיבלתי הצעות מחיר מחברות גדולות לפיתוח מערכות מסחר.</p>
+        <span class="tag">📈 הצעות מחברות גדולות</span>
+      </div>
+      <div class="card-bottom">
+        <div class="why-label">למה זה עבד</div>
+        <ul class="why-list">
+          <li>שילב ידע מחשוב קיים עם כלי AI</li>
+          <li>הציג יכולות מוכחות לחברות גדולות</li>
+          <li>הבין מה השוק מחפש ועבד לפי זה</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>מוכן לשנות את הקריירה שלך?</h2>
+  <p>250+ בוגרים כבר עשו את הצעד. צור קשר לפרטים והרשמה לתכנית הבאה.</p>
+  <a href="https://wa.me/972539220254" class="cta-btn">📲 דברו איתנו עכשיו ←</a>
+  <div style="margin-top:16px; color:rgba(255,255,255,.38); font-size:.88rem;">
+    או התקשר ·
+    <a href="tel:+972539220254" style="color:var(--cyan); font-weight:700; text-decoration:none;">053-922-0254</a>
+    · איתי
+  </div>
+</section>
+
+<div class="footer">Brain · AI GAME CHANGER · עדן ביבס</div>
+
+</body>
+</html>
